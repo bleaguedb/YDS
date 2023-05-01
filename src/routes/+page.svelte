@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import Team from "../components/Top/Team.svelte";
+  import init, {greet} from "../rust/hello-wasm/pkg/hello_wasm.js";
+  import {onMount} from "svelte";
+
+  onMount(async()=>{
+
+    await init()
+      .then(() => {
+        greet("WebAssembly")
+      });
+    });
+</script>
+
+<Team/>
